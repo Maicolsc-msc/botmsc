@@ -24,17 +24,17 @@ menu() {
         msg+="✌️😃 Hola <b>${message_from_first_name[$id]}</b>, Bienvenido (a)!\n"
         msg+="▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n"
         msg+="<b>CREA SU USUARIO DE 1 HORAS GRÁTIS</b>\n\n"
-        msg+="▬▬▬▬▬▬▬▬⭐ <b>VANTAGENS</b> ⭐▬▬▬▬▬▬▬▬\n"
+        msg+="▬▬▬▬⭐ <b>BENEFICIOS</b> ⭐▬▬▬▬\n"
         msg+="✅ Teste SIN COMPROMISO \n"
-        msg+="✅ Não precisa trocar seu plano\n"
-        msg+="✅ Não precisa trocar seu chip\n"
-        msg+="✅ Não tem multa por cancelamento\n"
-        msg+="✅ Não tem contrato\n"
-        msg+="✅ Funciona por aplicativo\n"
-        msg+="✅ Use a vontade da forma que preferir\n"
-        msg+="✅ É <b>ILIMITADO</b>\n"
+        msg+="✅ No es necesario cambiar de plan\n"
+        msg+="✅ No es necesario cambiar su SIM\n"
+        msg+="✅ Sin penalización por cancelación\n"
+        msg+="✅ Sin contrato\n"
+        msg+="✅ Funciona por aplicación\n"
+        msg+="✅ Usa tu voluntad como quieras.\n"
+        msg+="✅ ES <b>ILIMITADO</b>\n"
         msg+="▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n"
-        msg+="<b>🔴CLARO 🟣VIVO 🔵TIM 🟡OI</b>\n"
+        msg+="<b>🔴CLARO 🟣ENTEL 🔵MOVISTAR 🟡BITEL</b>\n"
         ShellBot.sendMessage --chat_id ${message_chat_id[$id]} \
         --text "$(echo -e $msg)" \
         --reply_markup "$keyboard1" \
@@ -48,10 +48,10 @@ menu() {
 criarteste() {
     [[ $(grep -wc ${callback_query_from_id} lista) != '0' ]] && {
       ShellBot.sendMessage --chat_id ${callback_query_message_chat_id} \
-        --text "❌ Acesso negado, verifique o horário da sua última criação, você pode criar teste grátis a ada 24 horas."
+        --text "❌ Acceso negado, verifique la hora de su última creación, puede crear una prueba gratuita cada 24 horas."
       return 0
     }
-    usuario=$(echo NSL-$(( RANDOM% + 999 )))
+    usuario=$(echo MSC$(( RANDOM% + 999 )))
     senha=$((RANDOM% + 99999))
     limite='1'
     tempo='1'
@@ -71,7 +71,7 @@ rm -rf /etc/SSHPlus/userteste/$usuario.sh" > /etc/SSHPlus/userteste/$usuario.sh
     echo ${callback_query_from_id} >> lista
     # - ENVIA O SSH
     ShellBot.sendMessage --chat_id ${callback_query_message_chat_id} \
-    --text "$(echo -e "▬▬▬▬▬▬▬▬▬▬▬\n        ✅ Creado con Éxito ✅\n▬▬▬▬▬▬▬▬▬▬▬\n            👤 USUARIO: <code>$usuario</code>\n               🔑 CONTRASEÑA: <code>$senha</code>\n             ⏰ Expira en: $tempo Hora")\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n   ℹ️ COMO CONECTAR A INTERNET\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n• Abra o app que você instalou.\n• Selecione sua operadora.\n• Digite o usuário e a senha recebida no app.\n• Ligue dados móveis e Desligue Wi-fi\n• Clique em Conectar.\n• Deve aparecer CONECTADO.\n• Se apareceu, va ao youtube e faça o teste.\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n   ⚠️ SIGA EXATAMENTE COMO DIZ\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬" \
+    --text "$(echo -e "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n        ✅ Creado con Éxito ✅\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n            👤 USUARIO: <code>$usuario</code>\n              🔑 CONTRASEÑA: <code>$senha</code>\n             ⏰ Expira en: $tempo Hora")\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n   ℹ️ COMO CONECTAR A INTERNET\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n• Abre la aplicación que instalaste.\n• Seleccione su operador.\n• Ingrese el usuario y contraseña en la aplicación.\n• Activar datos móviles y desactivar Wifi\n• Click en Conectar.\n• Deve aparecer CONECTADO.\n• Se apareceu, va ao youtube e faça o teste.\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n   ⚠️ SIGA EXATAMENTE COMO DIZ\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬" \
     --parse_mode html
     return 0
 }
