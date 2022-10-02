@@ -52,7 +52,7 @@ criarteste() {
       return 0
     }
     usuario=$(echo MSC$(( RANDOM% + 999 )))
-    senha=$((RANDOM% + 99999))
+    senha='12345h'
     limite='1'
     tempo='1'
     tuserdate=$(date '+%C%y/%m/%d' -d " +1 days")
