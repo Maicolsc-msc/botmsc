@@ -23,7 +23,7 @@ menu() {
         msg="▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n"
         msg+="✌️😃 Hola <b>${message_from_first_name[$id]}</b>, Bienvenido (a)!\n"
         msg+="▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n"
-        msg+="<b>CREA SU USUARIO DE 1 HORAS GRÁTIS</b>\n\n"
+        msg+="<b>CREA SU USUARIO DE 5 HORAS GRÁTIS</b>\n\n"
         msg+="▬▬▬▬⭐ <b>BENEFICIOS</b> ⭐▬▬▬▬\n"
         msg+="✅ PRUEBA SIN COMPROMISO \n"
         msg+="✅ No es necesario cambiar de plan\n"
@@ -54,8 +54,8 @@ criarteste() {
     usuario=$(echo MSC$(( RANDOM% + 999 )))
     senha='12345h'
     limite='1'
-    tempo='1'
-    tuserdate=$(date '+%C%y/%m/%d' -d " +1 days")
+    tempo='5'
+    tuserdate=$(date '+%C%y/%m/%d' -d " +2 days")
     useradd -M -N -s /bin/false $usuario -e $tuserdate > /dev/null 2>&1
     (echo "$senha";echo "$senha") | passwd $usuario > /dev/null 2>&1
     echo "$senha" > /etc/SSHPlus/senha/$usuario
