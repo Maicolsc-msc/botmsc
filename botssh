@@ -48,7 +48,7 @@ menu() {
 criarteste() {
     [[ $(grep -wc ${callback_query_from_id} lista) != '0' ]] && {
       ShellBot.sendMessage --chat_id ${callback_query_message_chat_id} \
-        --text "❌ Acceso negado, verifique la hora de su última creación, puede crear una prueba gratuita cada 24 horas."
+        --text "❌ Acceso negado, verifique la hora de su última creación, puedes crear un usuario gratis cada 24 horas."
       return 0
     }
     usuario=$(echo MSC$(( RANDOM% + 999 )))
