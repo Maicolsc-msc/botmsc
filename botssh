@@ -163,7 +163,7 @@ enviarapp() {
     ShellBot.answerCallbackQuery --callback_query_id ${callback_query_id[$id]} \
         --text "♻️ RECIBIENDO APLICACION..."
     ShellBot.sendDocument --chat_id ${callback_query_message_chat_id} \
-        --document "@/root/VPNPERU.apk" \
+        --document "@/root/MSC-Ultra.apk" \
     return 0
     
 }
@@ -193,6 +193,7 @@ ShellBot.InlineKeyboardButton --button 'botao1' --line 2 --text '📥 BAJAR APLI
 ShellBot.InlineKeyboardButton --button 'botao1' --line 3 --text '✅ COMPRAR USUARIO PREMIUM ✅' --callback_data '1' --url 't.me/MAICOLS' # LINK PV
 ShellBot.InlineKeyboardButton --button 'botao1' --line 4 --text '🆘 GRUPO SOPORTE MSC 🆘' --callback_data '2' --url 't.me/MSCPERU' # LINK PV
 ShellBot.InlineKeyboardButton --button 'botao1' --line 5 --text '🎬 TUTORIAL COMO USAR 🎬' --callback_data 'bttuto1'
+ShellBot.InlineKeyboardButton --button 'botao1' --line 6 --text '⭐ PAYPAL MSC ⭐' --callback_data '2' --url 'https://www.paypal.me/mscperu' # LINK PV
 ShellBot.regHandleFunction --function criarteste --callback_data gerarssh
 ShellBot.regHandleFunction --function criarteste2 --callback_data gerarssh2
 ShellBot.regHandleFunction --function criarteste3 --callback_data gerarssh3
