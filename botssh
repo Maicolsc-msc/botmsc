@@ -71,7 +71,7 @@ rm -rf /etc/SSHPlus/userteste/$usuario.sh" > /etc/SSHPlus/userteste/$usuario.sh
     echo ${callback_query_from_id} >> lista
     # - ENVIA O SSH
     ShellBot.sendMessage --chat_id ${callback_query_message_chat_id} \
-    --text "$(echo -e "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n        ✅ Creado con Éxito ✅\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n🌐 IP: 172.81.41.210\n🌐 CLOUDFLARE: <code>claro3.mscperu.store</code>\n👤 USUARIO: <code>$usuario</code>\n🔑 CONTRASEÑA: <code>$senha</code>\n⏰ EXPIRA EN: $tempo Dias")\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n• SSL PYTHON: 443\n• SOCKS PYTHON: 80\n• DROPBEAR: 8080\n• BadVPN: 7300 7400\n• SQUIP3: 3128\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n  ℹ️ COMO CONECTAR A INTERNET\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n• Abre la aplicación que instalaste.\n• Seleccione su operador.\n• Escribe tu usuario y contraseña en la aplicación.\n• Activar datos móviles y desactivar Wifi\n• Click en Conectar.\n• Debe aparecer CONECTADO.\n• APK https://t.me/mscvip/15\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n   ⚠️ DISFRUTA TU USUARIO GRATIS\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬" \
+    --text "$(echo -e "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n        ✅ Creado con Éxito ✅\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n🌐 IP: 5.161.153.73\n🌐 CLOUDFLARE: <code>gratis.mscperu.store</code>\n👤 USUARIO: <code>$usuario</code>\n🔑 CONTRASEÑA: <code>$senha</code>\n⏰ EXPIRA EN: $tempo Dias")\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n• SSL PYTHON: 443\n• SOCKS PYTHON: 80\n• DROPBEAR: 8080\n• BadVPN: 7300 7400\n• SQUIP3: 3128\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n  ℹ️ COMO CONECTAR A INTERNET\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n• Abre la aplicación que instalaste.\n• Seleccione su operador.\n• Escribe tu usuario y contraseña en la aplicación.\n• Activar datos móviles y desactivar Wifi\n• Click en Conectar.\n• Debe aparecer CONECTADO.\n• APK https://t.me/mscvip/15\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n   ⚠️ DISFRUTA TU USUARIO GRATIS\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬" \
     --parse_mode html
     return 0
 }
@@ -189,10 +189,10 @@ infouser () {
 unset botao1
 botao1=''
 ShellBot.InlineKeyboardButton --button 'botao1' --line 1 --text '⏰ CREAR USUARIO GRÁTIS ⏰' --callback_data 'gerarssh'
-ShellBot.InlineKeyboardButton --button 'botao1' --line 2 --text '📥 BAJAR APLICACION 📥' --callback_data 'appenviar'
+#ShellBot.InlineKeyboardButton --button 'botao1' --line 2 --text '📥 BAJAR APLICACION 📥' --callback_data 'appenviar'
 ShellBot.InlineKeyboardButton --button 'botao1' --line 3 --text '✅ COMPRAR USUARIO PREMIUM ✅' --callback_data '1' --url 't.me/MAICOLS' # LINK PV
 ShellBot.InlineKeyboardButton --button 'botao1' --line 4 --text '🆘 GRUPO SOPORTE MSC 🆘' --callback_data '2' --url 't.me/MSCPERU' # LINK PV
-ShellBot.InlineKeyboardButton --button 'botao1' --line 5 --text '🎬 TUTORIAL COMO USAR 🎬' --callback_data 'bttuto1'
+#ShellBot.InlineKeyboardButton --button 'botao1' --line 5 --text '🎬 TUTORIAL COMO USAR 🎬' --callback_data 'bttuto1'
 ShellBot.InlineKeyboardButton --button 'botao1' --line 6 --text '⭐ PAYPAL MSC ⭐' --callback_data '2' --url 'https://www.paypal.me/mscperu' # LINK PV
 ShellBot.regHandleFunction --function criarteste --callback_data gerarssh
 ShellBot.regHandleFunction --function criarteste2 --callback_data gerarssh2
