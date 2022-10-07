@@ -1,0 +1,217 @@
+#!/bin/bash
+clear
+#--------[ ZoroZoro ]-----------#
+source ShellBot.sh
+touch lista
+[[ -z $1 ]] && {
+    clear && echo "INFORME O TOKEN DO BOT" && return 0
+}
+# Informações Server 2
+ip_server2="SEU-IP-AQUI"
+senha_server2="SUA-SENHA-AQUI"
+# Informações Server 3
+ip_server3="SEU-IP-AQUI"
+senha_server3="SUA-SENHA-AQUI"
+[[ ! -e RESET ]] && touch RESET
+api_bot=$1
+ShellBot.init --token "$api_bot" --monitor --flush
+ShellBot.username
+
+# - Funcao menu
+menu() {
+    local msg
+        msg="▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n"
+        msg+="✌️😃 Hola <b>${message_from_first_name[$id]}</b>, Bienvenido (a)!\n"
+        msg+="▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n"
+        msg+="<b>👤 CREA SU USUARIO VPS GRÁTIS 👤</b>\n"
+        msg+="▬▬▬▬⭐ <b>BENEFICIOS</b> ⭐▬▬▬▬▬\n"
+        msg+="✅ PRUEBA SIN COMPROMISO \n"
+        msg+="✅ BIEN ECONÓMICO \n"
+        msg+="✅ NAVEGACIÓN PRIVADA \n"
+        msg+="✅ SIN PENALIZACIÓN \n"
+        msg+="✅ SIN CONTRATÓ \n"
+        msg+="✅ FUNCIONA CON APLICACIÓN \n"
+        msg+="✅ SERVIDOR DE ALTA VELOCIDAD.\n"
+        msg+="✅ <b>TRÁFICO ILIMITADO</b>\n"
+        msg+="▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n"
+        msg+="<b>🔴CLARO 🟣ENTEL 🔵MOVISTAR 🟡BITEL</b>\n"
+        ShellBot.sendMessage --chat_id ${message_chat_id[$id]} \
+        --text "$(echo -e $msg)" \
+        --reply_markup "$keyboard1" \
+        --parse_mode html
+        ShellBot.sendPhoto --chat_id ${message_chat_id[$id]} \
+        --photo "@/root/imagem.jpg" \
+        return 0
+}
+
+# - funcao criar ssh
+criarteste() {
+    [[ $(grep -wc ${callback_query_from_id} lista) != '0' ]] && {
+      ShellBot.sendMessage --chat_id ${callback_query_message_chat_id} \
+        --text "❌ Acceso negado, verifique la hora de su última creación, puedes crear un usuario gratis cada 24 horas."
+      return 0
+    }
+    usuario=$(echo MSC$(( RANDOM% + 999 )))
+    senha='12345h'
+    limite='5'
+    tempo='31'
+    tuserdate=$(date '+%C%y/%m/%d' -d " +31 days")
+    useradd -M -N -s /bin/false $usuario -e $tuserdate > /dev/null 2>&1
+    (echo "$senha";echo "$senha") | passwd $usuario > /dev/null 2>&1
+    echo "$senha" > /etc/SSHPlus/senha/$usuario
+    echo "$usuario $limite" >> /root/usuarios.db
+    echo "#!/bin/bash
+pkill -f "$usuario"
+userdel --force $usuario
+grep -v ^$usuario[[:space:]] /root/usuarios.db > /tmp/ph ; cat /tmp/ph > /root/usuarios.db
+rm /etc/SSHPlus/senha/$usuario > /dev/null 2>&1
+rm -rf /etc/SSHPlus/userteste/$usuario.sh" > /etc/SSHPlus/userteste/$usuario.sh
+    chmod +x /etc/SSHPlus/userteste/$usuario.sh
+    at -f /etc/SSHPlus/userteste/$usuario.sh now + $tempo hour > /dev/null 2>&1
+    echo ${callback_query_from_id} >> lista
+    # - ENVIA O SSH
+    ShellBot.sendMessage --chat_id ${callback_query_message_chat_id} \
+    --text "$(echo -e "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n        ✅ Creado con Éxito ✅\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n🌐 IP: 5.161.153.73\n🌐 CLOUDFLARE: <code>gratis.mscperu.store</code>\n👤 USUARIO: <code>$usuario</code>\n🔑 CONTRASEÑA: <code>$senha</code>\n⏰ EXPIRA EN: $tempo Dias")\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n• SSL PYTHON: 443\n• SOCKS PYTHON: 80\n• DROPBEAR: 8080\n• BadVPN: 7300 7400\n• SQUIP3: 3128\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n  ℹ️ COMO CONECTAR A INTERNET\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n• ABRE TU APLICACIÓN HTTP INJECTOR.\n• COLOCA LOS DATOS Y TU PAYLOAD.\n• DELE CONECTAR \n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n   ⚠️ DISFRUTA TU USUARIO GRATIS\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬" \
+    --parse_mode html
+    return 0
+}
+
+# - funcao criar ssh 2
+criarteste2() {
+   [[ $(grep -wc ${callback_query_from_id} lista) != '0' ]] && {
+      ShellBot.sendMessage --chat_id ${callback_query_message_chat_id} \
+        --text "❌ Acesso negado, verifique o horário da sua última criação, você pode criar teste grátis a ada 24 horas. !"
+      return 0
+    }
+    usuario=$(echo teste$(( RANDOM% + 250 )))
+    senha=$((RANDOM% + 99999))
+    limite='1'
+    tempo='1'
+    tuserdate=$(date '+%C%y/%m/%d' -d " +1 days")
+    if sshpass -p "$senha_server2" ssh -o ConnectTimeout=2 -o StrictHostKeyChecking=no root@$ip_server2 echo "ok" 1>/dev/null 2>/dev/null; then
+        sshpass -p "$senha_server2" ssh -o ConnectTimeout=2 -o StrictHostKeyChecking=no root@$ip_server2 << EOF
+        useradd -M -N -s /bin/false $usuario -e $tuserdate > /dev/null 2>&1
+    (echo "$senha";echo "$senha") | passwd $usuario > /dev/null 2>&1
+    echo "$senha" > /etc/SSHPlus/senha/$usuario
+    echo "$usuario $limite" >> /root/usuarios.db
+    echo "#!/bin/bash
+pkill -f "$usuario"
+userdel --force $usuario
+grep -v ^$usuario[[:space:]] /root/usuarios.db > /tmp/ph ; cat /tmp/ph > /root/usuarios.db
+rm /etc/SSHPlus/senha/$usuario > /dev/null 2>&1
+rm -rf /etc/SSHPlus/userteste/$usuario.sh" > /etc/SSHPlus/userteste/$usuario.sh
+chmod +x /etc/SSHPlus/userteste/$usuario.sh
+at -f /etc/SSHPlus/userteste/$usuario.sh now + $tempo hour > /dev/null 2>&1
+EOF
+    echo ${callback_query_from_id} >> lista
+    # - ENVIA O SSH
+    ShellBot.sendMessage --chat_id ${callback_query_message_chat_id} \
+    --text "$(echo -e "✅ <b>Criado com sucesso</b> ✅\n\nIP: $ip_server2\nUSUARIO: <code>$usuario</code>\nSENHA: <code>$senha</code>\n\n⏳ Expira em: $tempo Hora")" \
+    --parse_mode html
+    return 0
+else
+ShellBot.sendMessage --chat_id ${callback_query_message_chat_id} \
+    --text "$(echo -e Erro Tente novamente Mais tarde!)" \
+    --parse_mode html
+    return 0
+fi
+}
+
+# - funcao criar ssh 3
+criarteste3() {
+    [[ $(grep -wc ${callback_query_from_id} lista) != '0' ]] && {
+      ShellBot.sendMessage --chat_id ${callback_query_message_chat_id} \
+        --text "❌ Acesso negado, verifique o horário da sua última criação, você pode criar teste grátis a ada 24 horas. !"
+      return 0
+    }
+    usuario=$(echo teste$(( RANDOM% + 250 )))
+    senha=$((RANDOM% + 99999))
+    limite='1'
+    tempo='1'
+    tuserdate=$(date '+%C%y/%m/%d' -d " +1 days")
+    if sshpass -p "$senha_server3" ssh -o ConnectTimeout=2 -o StrictHostKeyChecking=no root@$ip_server3 echo "ok" 1>/dev/null 2>/dev/null; then
+        sshpass -p "$senha_server3" ssh -o ConnectTimeout=2 -o StrictHostKeyChecking=no root@$ip_server3 << EOF
+        useradd -M -N -s /bin/false $usuario -e $tuserdate > /dev/null 2>&1
+    (echo "$senha";echo "$senha") | passwd $usuario > /dev/null 2>&1
+    echo "$senha" > /etc/SSHPlus/senha/$usuario
+    echo "$usuario $limite" >> /root/usuarios.db
+    echo "#!/bin/bash
+pkill -f "$usuario"
+userdel --force $usuario
+grep -v ^$usuario[[:space:]] /root/usuarios.db > /tmp/ph ; cat /tmp/ph > /root/usuarios.db
+rm /etc/SSHPlus/senha/$usuario > /dev/null 2>&1
+rm -rf /etc/SSHPlus/userteste/$usuario.sh" > /etc/SSHPlus/userteste/$usuario.sh
+chmod +x /etc/SSHPlus/userteste/$usuario.sh
+at -f /etc/SSHPlus/userteste/$usuario.sh now + $tempo hour > /dev/null 2>&1
+EOF
+    echo ${callback_query_from_id} >> lista
+    # - ENVIA O SSH
+    ShellBot.sendMessage --chat_id ${callback_query_message_chat_id} \
+    --text "$(echo -e "✅ <b>Creado con exito</b> ✅\n\nIP: $ip_server3\nUSUARIO: <code>$usuario</code>\nCONTRASEÑA: <code>$senha</code>\n\n⏳ Expira en: $tempo Hora")" \
+    --parse_mode html
+    return 0
+else
+ShellBot.sendMessage --chat_id ${callback_query_message_chat_id} \
+    --text "$(echo -e Error intentar Mas tarde!)" \
+    --parse_mode html
+    return 0
+fi
+}
+
+#enviar app
+enviarapp() {
+    ShellBot.answerCallbackQuery --callback_query_id ${callback_query_id[$id]} \
+        --text "♻️ RECIBIENDO APLICACION..."
+    ShellBot.sendDocument --chat_id ${callback_query_message_chat_id} \
+        --document "@/root/MSC-Ultra.apk" \
+    return 0
+    
+}
+
+#enviar video 1
+tutorial1() {
+    ShellBot.answerCallbackQuery --callback_query_id ${callback_query_id[$id]} \
+        --text "♻️ RECIBIENDO EL VIDEO..."
+    ShellBot.sendDocument --chat_id ${callback_query_message_chat_id} \
+        --document "@/root/BOT/tutorial1.mp4" \
+    return 0
+    
+}
+
+#informacoes usuario
+infouser () {
+    ShellBot.sendMessage --chat_id ${message_chat_id[$id]} \
+    --text "$(echo -e "Nome:  ${message_from_first_name[$(ShellBot.ListUpdates)]}\nUser: @${message_from_username[$(ShellBot.ListUpdates)]:-null}")\nID: ${message_from_id[$(ShellBot.ListUpdates)]} " \
+    --parse_mode html
+    return 0
+}
+
+unset botao1
+botao1=''
+ShellBot.InlineKeyboardButton --button 'botao1' --line 1 --text '⏰ CREAR USUARIO GRÁTIS ⏰' --callback_data 'gerarssh'
+#ShellBot.InlineKeyboardButton --button 'botao1' --line 2 --text '📥 BAJAR APLICACION 📥' --callback_data 'appenviar'
+ShellBot.InlineKeyboardButton --button 'botao1' --line 3 --text '✅ COMPRAR USUARIO PREMIUM ✅' --callback_data '1' --url 't.me/MAICOLS' # LINK PV
+ShellBot.InlineKeyboardButton --button 'botao1' --line 4 --text '🆘 GRUPO SOPORTE MSC 🆘' --callback_data '2' --url 't.me/MSCPERU' # LINK PV
+#ShellBot.InlineKeyboardButton --button 'botao1' --line 5 --text '🎬 TUTORIAL COMO USAR 🎬' --callback_data 'bttuto1'
+ShellBot.InlineKeyboardButton --button 'botao1' --line 6 --text '⭐ PAYPAL MSC ⭐' --callback_data '2' --url 'https://www.paypal.me/mscperu' # LINK PV
+ShellBot.regHandleFunction --function criarteste --callback_data gerarssh
+ShellBot.regHandleFunction --function criarteste2 --callback_data gerarssh2
+ShellBot.regHandleFunction --function criarteste3 --callback_data gerarssh3
+ShellBot.regHandleFunction --function enviarapp --callback_data appenviar
+ShellBot.regHandleFunction --function tutorial1 --callback_data bttuto1
+unset keyboard1
+keyboard1="$(ShellBot.InlineKeyboardMarkup -b 'botao1')"
+while :; do
+   [[ "$(date +%d)" != "$(cat RESET)" ]] && {
+    echo $(date +%d) > RESET
+    echo ' ' > lista
+   }
+  ShellBot.getUpdates --limit 100 --offset $(ShellBot.OffsetNext) --timeout 30
+  for id in $(ShellBot.ListUpdates); do
+    (
+      ShellBot.watchHandle --callback_data ${callback_query_data[$id]}
+      comando=(${message_text[$id]})
+      [[ "${comando[0]}" = "/menu"  || "${comando[0]}" = "/start" ]] && menu
+    ) &
+  done
+done
