@@ -193,7 +193,7 @@ ShellBot.InlineKeyboardButton --button 'botao1' --line 1 --text '⏰ CREAR USUAR
 ShellBot.InlineKeyboardButton --button 'botao1' --line 3 --text '✅ COMPRAR USUARIO PREMIUM ✅' --callback_data '1' --url 't.me/MAICOLS' # LINK PV
 ShellBot.InlineKeyboardButton --button 'botao1' --line 4 --text '🆘 GRUPO SOPORTE MSC 🆘' --callback_data '2' --url 't.me/MSCPERU' # LINK PV
 #ShellBot.InlineKeyboardButton --button 'botao1' --line 5 --text '🎬 TUTORIAL COMO USAR 🎬' --callback_data 'bttuto1'
-ShellBot.InlineKeyboardButton --button 'botao1' --line 6 --text '⭐ PAYPAL MSC ⭐' --callback_data '2' --url 'https://www.paypal.me/mscperu' # LINK PV
+ShellBot.InlineKeyboardButton --button 'botao1' --line 6 --text '⭐ PÁGINA WEB MSC ⭐' --callback_data '2' --url 'https://web.mscperu.store' # LINK PV
 ShellBot.regHandleFunction --function criarteste --callback_data gerarssh
 ShellBot.regHandleFunction --function criarteste2 --callback_data gerarssh2
 ShellBot.regHandleFunction --function criarteste3 --callback_data gerarssh3
